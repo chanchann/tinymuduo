@@ -23,7 +23,7 @@ private:
     // 我们需要实现的线程的类的真正的线程执行体
 	virtual void Run() = 0;
 	pthread_t threadId_;
-	bool autoDelete_;
+	bool autoDelete_;  
 };
 
 #endif // _THREAD_H_
