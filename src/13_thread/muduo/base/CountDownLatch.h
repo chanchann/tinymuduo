@@ -9,25 +9,22 @@
 #include "muduo/base/Condition.h"
 #include "muduo/base/Mutex.h"
 
-namespace muduo
-{
+namespace muduo {
 
-class CountDownLatch : noncopyable
-{
- public:
+class CountDownLatch : noncopyable {
+public:
+    explicit CountDownLatch(int count);
 
-  explicit CountDownLatch(int count);
+    void wait();
 
-  void wait();
+    void countDown();
 
-  void countDown();
+    int getCount() const;
 
-  int getCount() const;
-
- private:
-  mutable MutexLock mutex_;
-  Condition condition_ GUARDED_BY(mutex_);
-  int count_ GUARDED_BY(mutex_);
+private:
+    mutable MutexLock mutex_;
+    Condition condition_ GUARDED_BY(mutex_);
+    int count_ GUARDED_BY(mutex_);
 };
 
 }  // namespace muduo
