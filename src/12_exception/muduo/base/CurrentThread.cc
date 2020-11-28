@@ -16,11 +16,13 @@ string stackTrace(bool demangle) {
     string stack;
     const int max_frames = 200; // 存200个地址
     void* frame[max_frames];   // 定义一个指针数组，用于保存地址，man backtrace看看参数
-    // int backtrace(void **buffer, int size);
-    int nptrs = ::backtrace(frame, max_frames);
+    // int backtrace(void **buffer, int size); 栈回溯，保存各个栈帧的地址
+    int nptrs = ::backtrace(frame, max_frames);  // nptrs 就是实际的个数
+    // char **backtrace_symbols(void *const *buffer, int size); 根据地址，转成相应的函数符号
     char** strings = ::backtrace_symbols(frame, nptrs);
     if (strings) {
         size_t len = 256;
+        // demangled 将名字还原回去
         char* demangled = demangle ? static_cast<char*>(::malloc(len)) : nullptr;
         for (int i = 1; i < nptrs; ++i) { // skipping the 0-th, which is this function
             if (demangle) {
@@ -38,6 +40,7 @@ string stackTrace(bool demangle) {
                 if (left_par && plus) {
                     *plus = '\0';
                     int status = 0;
+                    // abi::__cxa_demangle:c++中的函数符号都经过编译器处理，恢复回来并非原来的函数签名的样子，调用abi::__cxa_demangle可以将其恢复为编写的函数签名
                     char* ret = abi::__cxa_demangle(left_par+1, demangled, &len, &status);
                     *plus = '+';
                     if (status == 0) {

@@ -65,6 +65,7 @@ build/release/*
 build/debug/*
 build/run/*
 build/*
+*/build/*
 
 include/*
 lib/*

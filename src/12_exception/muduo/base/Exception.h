@@ -12,11 +12,13 @@ public:
     ~Exception() noexcept override = default;
 
     // default copy-ctor and operator= are okay.
-
+    // 覆盖了父类的what函数,用于打印异常信息
+    // noexcept是告诉编译器函数中不会发生异常,这有利于编译器对程序做更多的优化。
+    // override:若函数用其修饰,其继承的父类中必须提供同名的虚函数, TODO: 为何需要?
     const char* what() const noexcept override {
         return message_.c_str();
     }
-
+    // 覆盖了父类的stackTree函数,用于打印栈信息
     const char* stackTrace() const noexcept {
         return stack_.c_str();
     }
