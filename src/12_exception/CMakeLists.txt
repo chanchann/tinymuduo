@@ -14,10 +14,10 @@ if(CMAKE_PROJECT_NAME STREQUAL "muduo")
 endif()
 
 set(CXX_FLAGS
- -g  # 生成调试信息
+ -g
  # -DVALGRIND
  -DCHECK_PTHREAD_RETURN_VALUE
- -D_FILE_OFFSET_BITS=64   # -D
+ -D_FILE_OFFSET_BITS=64
  -Wall
  -Wextra
  -Werror
@@ -115,7 +115,7 @@ add_subdirectory(muduo/base)
 #   endif()
 # endif()
 
-# add_subdirectory(tests)
+add_subdirectory(tests)
 
 
 

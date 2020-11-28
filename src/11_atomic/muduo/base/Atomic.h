@@ -68,7 +68,7 @@ public:
     }
 
 private:
-    volatile T value_;
+    volatile T value_;  // volatile 避免编译器进行优化
 };
 }  // namespace detail
 

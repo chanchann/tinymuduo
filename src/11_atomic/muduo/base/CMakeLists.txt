@@ -1,6 +1,5 @@
 set(base_SRCS
-#   empty.cc
-    Atomic.h
+  empty.cc
   )
 
 add_library(muduo_base ${base_SRCS})
