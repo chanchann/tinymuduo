@@ -1,0 +1,6 @@
+add_executable(logstream_bench LogStream_bench.cc)
+target_link_libraries(logstream_bench muduo_base)
+
+add_executable(logstream_test LogStream_test.cc)
+target_link_libraries(logstream_test muduo_base boost_unit_test_framework)
+

@@ -1,0 +1,6 @@
+add_executable(singletonthreadlocal_test SingletonThreadLocal_test.cc)
+target_link_libraries(singletonthreadlocal_test muduo_base)
+
+add_executable(threadlocal_test ThreadLocal_test.cc)
+target_link_libraries(threadlocal_test muduo_base)
+
