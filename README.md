@@ -47,3 +47,5 @@ https://blog.csdn.net/Solstice/article/details/6186978
 ## wakeupchannle 
 
 https://zhuanlan.zhihu.com/p/34719855
+
+## aggregation 因为生存期不同，所以不要用智能指针
