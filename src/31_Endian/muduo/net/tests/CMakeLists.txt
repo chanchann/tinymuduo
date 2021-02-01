@@ -1,0 +1,5 @@
+if(BOOSTTEST_LIBRARY)
+add_executable(inetaddress_unittest InetAddress_unittest.cc)
+target_link_libraries(inetaddress_unittest muduo_net boost_unit_test_framework)
+#MESSAGE( STATUS "this var key = ${BOOSTTEST_LIBRARY}.")
+endif()
