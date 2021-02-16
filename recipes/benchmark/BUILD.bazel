@@ -1,0 +1,66 @@
+cc_binary(
+    name = "bm_compress",
+    srcs = ["bm_compress.cc"],
+    copts = ["-std=c++17"],
+    linkopts = ["-lsnappy"],
+    deps = [
+        "@benchmark//:benchmark_main",
+        "@lz4",
+        "@zlib",
+        "@zstd",
+        "@brotli//:brotlienc",
+    ],
+)
+
+cc_binary(
+    name = "bm_containers",
+    srcs = ["bm_containers.cc"],
+    copts = ["-std=c++17"],
+    deps = [
+        "@absl//absl/container:flat_hash_map",
+        "@absl//absl/container:node_hash_map",
+        "@benchmark",
+    ],
+)
+
+cc_binary(
+    name = "bm_fileio",
+    srcs = ["bm_fileio.cc"],
+    deps = [
+        "@benchmark",
+    ],
+)
+
+cc_binary(
+    name = "bm_memory",
+    srcs = ["bm_memory.cc"],
+    deps = [
+        "@benchmark//:benchmark_main",
+    ],
+)
+
+cc_library(
+    name = "format",
+    srcs = ["format.cc"],
+    hdrs = ["format.h"],
+)
+
+cc_test(
+    name = "format_test",
+    srcs = ["format_test.cc"],
+    copts = ["-std=c++14"],
+    deps = [
+        ":format",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "format_bench",
+    srcs = ["format_bench.cc"],
+    linkstatic = 1,
+    deps = [
+        ":format",
+        "@benchmark//:benchmark_main",
+    ],
+)
